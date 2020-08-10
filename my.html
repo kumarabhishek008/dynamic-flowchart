@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>flowchart application</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body{
+
+      
+  }
+  #btn_container{
+      background-color : none;
+      height : 100%;
+      z-index : -2;
+  }
+  #btn1{
+        width : 150px;
+        padding:10px;
+        background-image : linear-gradient(to right ,green,white);
+        margin: 50px;
+        box-shadow : 5px 5px 5px grey ;
+        border : none ;
+        font-size : 20px;
+        font-family : verdana;
+        opacity : 80%;
+        border-radius : 30px ;
+        click : active ;
+        z-index: ;
+  }
+  .vertical {
+        border-left: 6px solid green;
+        height: 100px;
+        position: absolute;
+        left: 49.9%;
+        margin-top: 97px;
+        top: 0;
+        display :  none ;
+        border : ;
+        opacity : 80%;
+        z-index : 1;
+  }
+  #line0 {
+        border-left: 6px solid green;
+        height: 98px;
+        position: absolute;
+        left: 49.9%;
+        margin-top: 250px;
+        top: 0;
+        display :  none ;
+        border : ;
+        opacity : 80%;
+        z-index : 1;
+  }
+  #btn2{
+        width : 60px;
+        padding:10px;
+        background-image:linear-gradient(to right,green,white);
+        margin: 26px;
+        box-shadow : 5px 5px 5px grey ;
+        border : none ;
+        font-size : 25px;
+        font-family : verdana;
+        opacity : 80%;
+        border-radius : 50px ;
+        display : none ;
+        z-index: ;
+  }
+
+
+  
+  .context-menu{
+        display: none;
+        position: absolute;
+        border: 1px ;
+        border-radius: 10px;
+        width: 150px;
+        background-image : linear-gradient(to bottom,green,white);
+        box-shadow: 5px 5px 5px #888888;
+      
+  }
+  .context-menu .btn{
+        background-image:linear-gradient(to right,green,white);
+        box-shadow: 3px 3px 3px grey;
+        
+  }
+    #line1 {
+        border-left: 6px solid green;
+        height: 100px;
+        position: absolute;
+        left: 49.9%;
+        margin-top: 394px;
+        top: 0;
+        display :  inline-block ;
+        border : ;
+        opacity : 80%;
+        
+  }
+    #line2 {
+        border-left: 6px solid green;
+        height: 100px;
+        position: absolute;
+        left: 49.9%;
+        margin-top: 394px;
+        top: 0;
+        display :  inline-block ;
+        border : ;
+        opacity : 80%;
+        
+  }
+  #gl1{
+      color:red;
+      display : none;
+  }
+ 
+  </style>
+</head>
+<body>
+
+<div class="container text-center" id="btn_container">
+<button class="btn btn-default" id="btn1">Start</button><br>
+
+</div>
+
+<div class="context-menu">
+<button class="btn btn-default" id="single_element">Single Element</button>
+<button class="btn btn-default" id="double_element">Double Element</button>
+</div>
+
+
+<!--script area work-->
+<script>
+var newEle = '<div class="vertical" ></div><br>';
+var rouBtn = '<button class="btn btn-default" id="btn2">+</button><br>';
+var i = 1 ;
+$(document).ready(function(){
+    $("#btn1").click(function(){
+        
+        while (i==1)
+        {           
+            $("#btn_container").append(newEle);
+            $("#btn_container").append(rouBtn);
+            $(".vertical").slideDown("slow").css({
+                
+                "height": "100px",
+                "position": "absolute",
+                "left": "49.9%",
+                "margin-top": "97px",
+                "top": "0",
+                "display" :  "inline" ,
+                "opacity" : "80%",
+                "z-index": "1",
+            });
+            $("#btn2").slideDown("slow");
+            i++;
+        }
+        $("#btn2").click(function(e){
+            if (i==2){
+                currentElement = e.target;
+                var top = e.pageY+7;
+                var left = e.pageX;
+                $(".context-menu").show("slow").css({
+                top: top + "px",
+                left: left + "px"
+                });
+                i++;
+            
+            }else{
+                alert("refesh the page for next option");
+                $(".context-menu").hide("slow");
+            }
+        }); 
+        
+    });
+    var simBtn = '<button class="btn btn-default" id="btn4">Start</button><br>';
+    var newLine = '<div class="vl" id="line1"></div><br>';
+    var newLine0 = '<div class="vl" id="line0"></div><br>';
+    $("#single_element").click(function(){
+       
+        var rouBtn2 = '<button class="btn btn-default" id="btn3">+</button><br>';
+        $(".context-menu").hide();
+        $("#btn_container").append(newLine0);
+        $("#btn_container").append(simBtn);
+        $("#btn_container").append(newLine);
+        $("#btn_container").append(rouBtn2);
+
+        $("#line0").slideDown("slow").css({
+            "display":"inline",
+            "color":"red",
+            "margin-top":"250px"
+
+            });
+        $("#btn4").slideDown(1000).css({
+            "width" : "150px",
+            "padding":"10px",
+            "background-image" : "linear-gradient(to right ,green,white)",
+            "margin": "51px",
+            "box-shadow" : "5px 5px 5px grey" ,
+            "border" : "none" ,
+            "font-size" : "20px",
+            "font-family" : "verdana",
+            "opacity" : "80%",
+            "border-radius" : "30px" ,
+            
+        });  
+        $("#line1").slideDown("slow"); 
+        $("#btn3").slideDown("slow").css({
+            "width": "60px",
+            "padding":"10px",
+            "background-image":"linear-gradient(to right,green,white)",
+            "margin": "26px",
+            "box-shadow" : "5px 5px 5px grey" ,
+            "border" : "none" ,
+            "font-size" : "25px",
+            "font-family" : "verdana",
+            "opacity" : "80%",
+            "border-radius" : "50px" ,
+            
+        });
+    });
+
+    $("#double_element").click(function(){
+
+       var frec1 ='<div class="rectangle" id="rec1"></div>';
+       var newLine2 = '<div class="vl" id="line2"></div><br>';
+       var cir1 = '<div class="circle col-sm-6" id="cir1"><span class="glyphicon glyphicon-thumbs-up" style="margin-top:20px;"></span></div>'
+       var cir2 = '<div class="circle col-sm-6" id="cir2"><span class="glyphicon glyphicon-thumbs-down" style="margin-top:20px;"></span></div>'
+       $(".context-menu").hide();
+       $("#btn_container").append(newLine);
+       $("#btn_container").append(simBtn);
+       $("#btn_container").append(newLine2);
+       $("#btn_container").append(frec1);
+       $("#btn_container").append(cir1);
+       $("#btn_container").append(cir2);
+        $("#line1").slideDown("slow").css({"margin-top":"250px"}); 
+        $("#btn4").slideDown(1000).css({
+            "width" : "150px",
+            "padding":"10px",
+            "background-image" : "linear-gradient(to right ,green,white)",
+            "margin": "51px",
+            "box-shadow" : "5px 5px 5px grey" ,
+            "border" : "none" ,
+            "font-size" : "20px",
+            "font-family" : "verdana",
+            "opacity" : "80%",
+            "border-radius" : "30px" ,
+            
+        }); 
+       $("#line2").slideDown("slow").css({"margin-top":"395px","height":"73px"});
+       $("#rec1").slideDown(1000).css({
+            "height": "50px",
+            "width": "200px",
+            "border":"6px solid green",
+            "border-bottom":"none",
+            "margin-left":"470px",
+       });
+       $("#cir1").slideDown("slow").css({
+
+            "height": "50px",
+            "width": "50px",
+            "background-image": "linear-gradient(to right,green,white)",
+            "border-radius": "50%",
+            "margin-left" : "449px",
+       });
+       $("#cir2").slideDown("slow").css({
+
+            "height": "50px",
+            "width": "50px",
+            "background-image": "linear-gradient(to right,red,white)",
+            "border-radius": "50%",
+            "margin-left" : "142px",
+       });
+
+     
+    })
+    $("#btn3").click(function(){
+        console.log("abhi");
+    });
+ 
+
+});
+
+</script>
+</body>
+</html>
